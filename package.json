@@ -1,0 +1,22 @@
+{
+  "name": "fd-ip-api",
+  "version": "1.0.0",
+  "description": "A API to link with Huracan Solutions FiveM Utility Bot and to aid in the verification of users",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/freech-dev/FD-IP-API.git"
+  },
+  "keywords": [
+    "api"
+  ],
+  "author": "freech_dev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/freech-dev/FD-IP-API/issues"
+  },
+  "homepage": "https://github.com/freech-dev/FD-IP-API#readme"
+}
