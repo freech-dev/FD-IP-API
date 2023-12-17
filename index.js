@@ -1,25 +1,22 @@
 const express = require('express');
+const fetch = require('node-fetch');
 const app = express();
-const port = 1800;
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-
-const hashedLicenseKeys = config.LicenseKeys.map((licenseKey) => bcrypt.hashSync(licenseKey, 10));
+const port = 3000;
 
 app.use(express.json());
 
-app.post('/verify', (req, res) => {
+app.post('/checkip', async (req, res) => {
+  const userIP = req.ip; // Extract the user's IP address from the incoming request
+  const response = await fetch(`http://ip-api.com/json/${userIP}`);
 
-});
+  if (response.ok) {
+    const data = await response.json();
+    const isVPN = data.proxy || data.vpn;
 
-app.use((err, req, res, next) => {
-  console.error(err);
-  console.log('An error occurred in the API:', err.message);
-  next(err);
-});
-
-app.use((err, req, res, next) => {
-  res.status(500).json({ error: 'Internal Server Error' });
+    res.json({ isVPN });
+  } else {
+    res.status(500).json({ error: 'Failed to fetch IP data' });
+  }
 });
 
 app.listen(port, () => {
